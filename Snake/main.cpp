@@ -6,13 +6,14 @@
 #include <thread>
 #include <vector>
 #include "Fruits.h"
+#include <Windows.h>
 /*De facut:
 1.Nivele(optional).*/
 int lineDim = 13;
 int columnDim = 13;
 int mat[13][13] = { 0 };
 int points = 1;
-
+int speedGame = 100;
 void afisMat(std::vector<Player> player, Fruits fructe)
 {
 	std::cout << " ";
@@ -70,45 +71,100 @@ bool gameOver(std::vector<Player> player)
 			}
 	return 1;
 }
+void singleMovement(std::vector<Player>& player)
+{
+
+	std::string pos;
+	std::vector<Player> temp = player;
+	player[0] = player[0] + pos;
+	repos(player, pos, temp);
+
+}
 void keyborad(std::vector<Player> player,Fruits fructe)
 {
+	std::cout << "\nPress any key to start...";
+	_getch();
 	std::string pos;
 	pos.push_back('x');
-	char ch;
+	char ch = 'g';
 	//Fruits fructe;
 	std::vector<Player> temp = player;
 	do {
+	input:
 		std::vector<Player> temp = player;
-		pos.pop_back();
-		ch = _getch();
-		pos.push_back(ch);
-		if (pos[0] != 'p') {
-			player[0] = player[0] + pos;
-			repos(player,pos,temp);
-			system("cls");
-			afisMat(player,fructe);
-			if (fructe.getX() == player[0].getX() && fructe.getY() == player[0].getY()) {
-				for(int i = 0; i < player.size(); i++)
-					while(fructe.getX() == player[i].getX() && fructe.getY() == player[i].getY())
-						fructe.~Fruits();
-				Player p(player[player.size()-1].getX()-1, player[player.size() - 1].getY(), "E");
-				player.push_back(p);
-				points++;
-			}
+		if (_kbhit()) {
+			pos.pop_back();
+			ch = _getch();
+			pos.push_back(ch);
+			if (pos[0] != 'p') {
+				player[0] = player[0] + pos;
+				repos(player, pos, temp);
+				system("cls");
+				afisMat(player, fructe);
+				if (fructe.getX() == player[0].getX() && fructe.getY() == player[0].getY()) {
+					for (int i = 0; i < player.size(); i++)
+						while (fructe.getX() == player[i].getX() && fructe.getY() == player[i].getY())
+							fructe.~Fruits();
+					Player p(player[player.size() - 1].getX() - 1, player[player.size() - 1].getY(), "f");
+					player.push_back(p);
+					points++;
+				}
 
+			}
+		} 
+		if (_kbhit()) 
+			goto input;
+		Sleep(speedGame);
+		singleMovement(player);
+		system("cls");
+		afisMat(player, fructe);
+		if (fructe.getX() == player[0].getX() && fructe.getY() == player[0].getY()) {
+			for (int i = 0; i < player.size(); i++)
+				while (fructe.getX() == player[i].getX() && fructe.getY() == player[i].getY())
+					fructe.~Fruits();
+			Player p(player[player.size() - 1].getX() - 1, player[player.size() - 1].getY(), "f");
+			player.push_back(p);
+			points++;
 		}
 	} while (ch != 'p' && gameOver(player) == 1);
 	return;
 }
-
-void startGame()
+void Start()
 {
 	std::vector<Player> player;
 	Fruits fructe;
-	Player pl(6,6," ");
+	Player pl(6, 6, "n");
 	player.push_back(pl);
-	afisMat(player,fructe);
-	keyborad(player,fructe);
+	afisMat(player, fructe);
+	keyborad(player, fructe);
+}
+void startGame()
+{
+startG:
+	system("cls");
+	std::cout << "1.Start Game!\n2.Exit.\n";
+	char op;
+	op = _getch();
+	if (op == '1') {
+		system("cls");
+	difficulty:
+		system("cls");
+		std::cout << "Choose difficulty:\n1.Easy.\n2.Medium.\n3.Hard.\n";
+		op = _getch();
+		if (op == '1')
+			speedGame = 500;
+		else if (op == '2')
+			speedGame = 250;
+		else if (op == '3')
+			speedGame = 100;
+		else { std::cout << "You have introduce wrong input."; Sleep(150); goto difficulty; }
+		system("cls");
+		Start();
+	}
+	else if (op == '2')
+		return;
+	else { std::cout << "You have introduce wrong input."; Sleep(150); goto startG; }
+	return;
 }
 int main()
 {
