@@ -164,8 +164,10 @@ startG:
 		//system("cls");
 		std::cout << "\n\nRetry???/Reincerci???\n1.Yes./Da.\n2.No./Nu.\n";
 		op = _getch();
-		if (op == '1')
+		if (op == '1') {
+			points = 1;
 			goto startG;
+		}
 		else if (op == '2')
 			return;
 		else goto retry;
