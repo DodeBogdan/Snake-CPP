@@ -160,6 +160,16 @@ startG:
 		else { std::cout << "You have introduce wrong input."; Sleep(150); goto difficulty; }
 		system("cls");
 		Start();
+		retry:
+		//system("cls");
+		std::cout << "\n\nRetry???\n1.Yes.\n2.No.\n";
+		op = _getch();
+		if (op == '1')
+			goto startG;
+		else if (op == '2')
+			return;
+		else goto retry;
+
 	}
 	else if (op == '2')
 		return;
