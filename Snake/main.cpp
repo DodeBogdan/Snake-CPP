@@ -55,18 +55,18 @@ bool gameOver(std::vector<Player> player)
 {
 	if (player[0].getX() == -1 || player[0].getX() == 13)
 	{
-		std::cout << "\n\n\n\t GAME OVER!!!\n   You have done: " << points << " points.\n\n";
+		std::cout << "\n\n\n\t GAME OVER!!!/Sfarsit de joc!!!\n   You have done:/Ai facut: " << points << " points./puncte.\n\n";
 		return 0;
 	}else
 	if (player[0].getY() == -1 || player[0].getY() == 13)
 	{
-		std::cout << "\n\n\n\t GAME OVER!!!\n   You have done: " << points << " points.\n\n";
+		std::cout << "\n\n\n\t GAME OVER!!!/Sfarsit de joc!!!\n   You have done:/Ai facut: " << points << " points./puncte.\n\n";
 		return 0;
 	}else
 		for(int i = 1; i < player.size(); i++)
 			if(player[0].getX() == player[i].getX() && player[0].getY() == player[i].getY())
 			{
-				std::cout << "\n\n\n\t GAME OVER!!!\n   You have done: "<<points<<" points.\n\n";
+				std::cout << "\n\n\n\t GAME OVER!!!/Sfarsit de joc!!!\n   You have done:/Ai facut: "<<points<<" points./puncte.\n\n";
 				return 0;
 			}
 	return 1;
@@ -82,7 +82,7 @@ void singleMovement(std::vector<Player>& player)
 }
 void keyborad(std::vector<Player> player,Fruits fructe)
 {
-	std::cout << "\nPress any key to start...";
+	std::cout << "\nPress any key to start.../Apasa orice tasta pentru a incepe...";
 	_getch();
 	std::string pos;
 	pos.push_back('x');
@@ -142,14 +142,14 @@ void startGame()
 {
 startG:
 	system("cls");
-	std::cout << "1.Start Game!\n2.Exit.\n";
+	std::cout << "1.Start Game!/Incepe joc!\n2.Exit./Iesi.\n";
 	char op;
 	op = _getch();
 	if (op == '1') {
 		system("cls");
 	difficulty:
 		system("cls");
-		std::cout << "Choose difficulty:\n1.Easy.\n2.Medium.\n3.Hard.\n";
+		std::cout << "Choose difficulty:/Alege dificultatea.\n1.Easy./Usor.\n2.Medium./Mediu.\n3.Hard./Greu.\n";
 		op = _getch();
 		if (op == '1')
 			speedGame = 500;
@@ -157,12 +157,12 @@ startG:
 			speedGame = 250;
 		else if (op == '3')
 			speedGame = 100;
-		else { std::cout << "You have introduce wrong input."; Sleep(150); goto difficulty; }
+		else { std::cout << "You have introduce wrong input./Ai introdus un input gresit."; Sleep(150); goto difficulty; }
 		system("cls");
 		Start();
 		retry:
 		//system("cls");
-		std::cout << "\n\nRetry???\n1.Yes.\n2.No.\n";
+		std::cout << "\n\nRetry???/Reincerci???\n1.Yes./Da.\n2.No./Nu.\n";
 		op = _getch();
 		if (op == '1')
 			goto startG;
@@ -173,7 +173,7 @@ startG:
 	}
 	else if (op == '2')
 		return;
-	else { std::cout << "You have introduce wrong input."; Sleep(150); goto startG; }
+	else { std::cout << "You have introduce wrong input./Ai introdus un input gresit."; Sleep(150); goto startG; }
 	return;
 }
 int main()
