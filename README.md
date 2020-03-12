@@ -13,12 +13,15 @@ If you want to choose an option you need just to press 1 or 2.
 <img src="Images/Main.png" height = 150>
 
 The difficulty is different only in terms of speed.
+
 <img src="Images/Difficulty.png"  height = 170>
 
 This is how it looks in game.
+
 <img src="Images/InGame.png"  height = 300>
 <img src="Images/InGame2.png">
 <img src="Images/InGame3.png">
 
 This is how it looks when you loose.
+
 <img src="Images/Game Over.png">
